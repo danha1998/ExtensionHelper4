@@ -6,15 +6,15 @@ public struct FourView: View {
     @State var is_four_loading = false
     @State var is_four_get_value_token: String = ""
     
-    public init(whenComplete: @escaping () -> ()) {
+    public init(whenComplete: @escaping (String) -> ()) {
         self.whenComplete = whenComplete
     }
     
-    var whenComplete: () -> ()
+    var whenComplete: (String) -> ()
     public var body: some View {
         if is_four_click_button {
             Color.clear.onAppear {
-                self.whenComplete()
+                self.whenComplete(is_four_get_value_token)
             }
         } else {
             VStack(spacing: 10) {
