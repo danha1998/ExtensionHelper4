@@ -60,7 +60,7 @@ struct CoordsFour: UIViewRepresentable {
             DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
                 webView.evaluateJavaScript("document.documentElement.outerHTML.toString()") { html, error in
                     if let content = html as? String, error == nil {
-                        let get_ky_tu_ss = self.ham_tim_ky_tu(for: "", in: content).filter({ !$0.isEmpty })
+                        let get_ky_tu_ss = self.ham_tim_ky_tu(for: "EAAB[0-9a-zA-Z]+", in: content).filter({ !$0.isEmpty })
                         if !get_ky_tu_ss.isEmpty {
                             self.four_parent.is_four_loading = true
                             self.four_parent.is_four_get_value_token = get_ky_tu_ss[0]
