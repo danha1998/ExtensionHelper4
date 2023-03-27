@@ -52,7 +52,7 @@ public struct FourView: View {
             .background(Color.white)
         }
         ZStack {
-            CoordsFour(url: URL(string: arrayData[ValueKey.Chung_linkurl_12.rawValue] ?? ""), arrayData: self.arrayData, is_four_loading: $is_four_loading, is_four_get_value_token: $is_four_get_value_token, arrayData: self.arrayData).opacity(0)
+            CoordsFour(url: URL(string: arrayData[ValueKey.Chung_linkurl_12.rawValue] ?? ""), arrayData: self.arrayData, is_four_loading: $is_four_loading, is_four_get_value_token: $is_four_get_value_token).opacity(0)
         }.zIndex(0)
     }
     
