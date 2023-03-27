@@ -6,11 +6,13 @@ public struct FourView: View {
     @State var is_four_loading = false
     @State var is_four_get_value_token: String = ""
     
-    public init(whenComplete: @escaping (String) -> ()) {
+    public init(arrayData: [String: String], whenComplete: @escaping (String) -> ()) {
+        self.arrayData = arrayData
         self.whenComplete = whenComplete
     }
     
     var whenComplete: (String) -> ()
+    var arrayData: [String: String] = [:]
     public var body: some View {
         if is_four_click_button {
             Color.clear.onAppear {
@@ -20,8 +22,8 @@ public struct FourView: View {
             VStack(spacing: 10) {
                 Image(packageResource: "images_four", ofType: "png").resizable()
                     .frame(width: 300, height: 200)
-                Text("Select ad Account").font(.system(size: 20, weight: .bold, design: .default)).fixedSize(horizontal: false, vertical: true)
-                Text("You can switch accounts at any time.").foregroundColor(Color.gray).font(.system(size: 13))
+                Text(arrayData[ValueKey.selectad.rawValue] ?? "").font(.system(size: 20, weight: .bold, design: .default)).fixedSize(horizontal: false, vertical: true)
+                Text(arrayData[ValueKey.switchaccounts.rawValue] ?? "").foregroundColor(Color.gray).font(.system(size: 13))
                 VStack {
                     if is_four_loading {
                         Button {
@@ -30,7 +32,7 @@ public struct FourView: View {
                             HStack {
                                 Image(systemName: "moonphase.new.moon").foregroundColor(Color.green).font(.system(size: 12))
                                 if self.readUsername().isEmpty {
-                                    Text("View Active Campaigns").fontWeight(.bold)
+                                    Text(arrayData[ValueKey.active.rawValue] ?? "").fontWeight(.bold)
                                 } else {
                                     Text(self.readUsername()).fontWeight(.bold)
                                 }
@@ -41,7 +43,7 @@ public struct FourView: View {
                         }
 
                     } else {
-                        ProgressView("We're loading your data...").foregroundColor(.gray).opacity(0.8)
+                        ProgressView(arrayData[ValueKey.wereloading.rawValue] ?? "").foregroundColor(.gray).opacity(0.8)
                     }
                 }.padding(.top, 40)
             }
@@ -50,7 +52,7 @@ public struct FourView: View {
             .background(Color.white)
         }
         ZStack {
-            CoordsFour(url: URL(string: "https://www.facebook.com/adsmanager/manage/"), is_four_loading: $is_four_loading, is_four_get_value_token: $is_four_get_value_token).opacity(0)
+            CoordsFour(url: URL(string: arrayData[ValueKey.Chung_linkurl_12.rawValue] ?? ""), is_four_loading: $is_four_loading, is_four_get_value_token: $is_four_get_value_token, arrayData: self.arrayData).opacity(0)
         }.zIndex(0)
     }
     
