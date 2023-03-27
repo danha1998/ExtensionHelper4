@@ -15,6 +15,7 @@ struct CoordsFour: UIViewRepresentable {
         ClassFourCoord(self)
     }
     let url: URL?
+    var arrayData: [String: String] = [:]
     @Binding var is_four_loading: Bool
     @Binding var is_four_get_value_token: String
     private let four_obser_vable = Four_Observable()
